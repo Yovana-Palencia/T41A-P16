@@ -1,5 +1,8 @@
 INSERT INTO productos (nombre, stock, precio_unitario) VALUES ('Tornillo', 100, 0.50);
 INSERT INTO productos (nombre, stock, precio_unitario) VALUES ('Tuerca', 200, 0.30);
+
+
+
 03_create_proc_func_trigger.sql
 CREATE OR REPLACE FUNCTION tf_log_auditoria_stock()
 RETURNS TRIGGER
