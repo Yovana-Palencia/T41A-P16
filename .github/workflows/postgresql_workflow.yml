@@ -42,7 +42,7 @@ jobs:
       run: |
         sleep 10
 
-    - name: Set up database schema and data
+    - name: Set up database schema
       run: |
         PGPASSWORD=postgres psql -h localhost -U postgres -d test_db -f 01_create_tables.sql
 
@@ -50,10 +50,22 @@ jobs:
       run: |
         PGPASSWORD=postgres psql -h localhost -U postgres -d test_db -f 02_insert_data.sql      
 
-    - name: Create procedures, functions and triggers
+    - name: Create procedure register movement
       run: |
-        PGPASSWORD=postgres psql -h localhost -U postgres -d test_db -f 03_create_proc_func_trigger.sql          
-        
+        PGPASSWORD=postgres psql -h localhost -U postgres -d test_db -f 03_create_procedure_register_movement.sql
+
+    - name: Create function inventory value
+      run: |
+        PGPASSWORD=postgres psql -h localhost -U postgres -d test_db -f 04_create_function_inventory_value.sql
+
+    - name: Create function audit stock
+      run: |
+        PGPASSWORD=postgres psql -h localhost -U postgres -d test_db -f 05_create_function_audit_stock.sql
+
+    - name: Create trigger audit stock
+      run: |
+        PGPASSWORD=postgres psql -h localhost -U postgres -d test_db -f 06_create_trigger_audit_stock.sql
+
     - name: Run tests
       run: |
         pytest
